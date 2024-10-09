@@ -14,6 +14,12 @@ use Illuminate\Support\Facades\Validator;
 
 class FrontController extends Controller
 {
+
+    public function beranda() {
+
+       
+        return view ('front.beranda');
+    }
     public function index() {
 
         $products = Product::where('is_featured', 'Yes')
