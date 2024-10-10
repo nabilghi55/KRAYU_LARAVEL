@@ -8,7 +8,7 @@
 
     <meta name="HandheldFriendly" content="True" />
     <meta name="pinterest" content="nopin" />
-
+	@vite('resources/css/app.css')
     <meta property="og:locale" content="en_AU" />
     <meta property="og:type" content="website" />
     <meta property="fb:admins" content="" />
@@ -91,12 +91,12 @@
                 </ul>
             </div>
 
-            <div class="right-nav py-0">
+            <!-- <div class="right-nav py-0">
                 <a href="{{ route("front.cart") }}" class="ml-3 d-flex pt-2">
                     <i class="fas fa-shopping-cart text-primary"></i>
                     <span id="cart-item-count" class="badge badge-danger">0</span>
                 </a>
-            </div>
+            </div> -->
         </nav>
     </div>
 </header>
