@@ -1,8 +1,8 @@
 @extends('front.layouts.app')
 @include('front.partials.navbar')
 @section('content')
-
-    <section class="h-3/4 lg:h-screen object-cover" style="background-image: url('{{ asset('img/banner.png') }}')">
+    <section class="h-3/4 lg:h-screen object-cover"
+        style="background-image: url('{{ asset('img/banner.png') }}'); background-repeat: no-repeat; background-size: cover;">
         <div class="text-center h-full flex items-center justify-center mx-auto">
             <div class="text-white">
                 <h1 class="text-6xl lg:text-8xl text-[#F3F0EB]">KRAYU</h1>
@@ -19,7 +19,7 @@
         </div>
     </section>
 
-    <section id="about" class="pt-5 pb-4 w-3/4 mx-auto tracking-wide lg:text-2xl">
+    <section id="about" class="pt-5 w-3/4 mx-auto tracking-wide lg:text-2xl">
         <div class="text-center mx-auto">
             <div class="text-black">
                 <h1 class="font-bold">Tentang Krayu</h1>
@@ -75,3 +75,4 @@
             </div>
         </div>
     </section>
+    @include('front.partials.footer')
