@@ -19,7 +19,7 @@
         </div>
     </section>
 
-    <section id="about" class="pt-5 w-3/4 mx-auto tracking-wide lg:text-2xl">
+    <section id="about" class="py-5 w-3/4 mx-auto tracking-wide lg:text-2xl">
         <div class="text-center mx-auto">
             <div class="text-black">
                 <h1 class="font-bold">Tentang Krayu</h1>
