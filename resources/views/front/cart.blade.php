@@ -1,7 +1,6 @@
 @extends('front.layouts.app')
 @include('front.partials.navbar')
 @section('content')
-
     <section class="pt-4 bg-white">
         <div class="container mx-auto">
             <div class="row">
@@ -67,7 +66,8 @@
                                                 </div>
                                             </td>
                                             <td class="align-middle">Rp {{ number_format($item->price, 2) }}</td>
-                                            <td class="total-price align-middle">Rp {{ number_format($item->price * $item->qty, 2) }}
+                                            <td class="total-price align-middle">Rp
+                                                {{ number_format($item->price * $item->qty, 2) }}
                                             </td>
                                             <td class="align-middle">
                                                 <button class="bg-red-500 text-white rounded p-2"
@@ -109,6 +109,7 @@
                 @endif
             </div>
         </div>
+        @include('front.partials.footer')
     </section>
 @endsection
 
