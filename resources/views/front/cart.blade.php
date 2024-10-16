@@ -81,9 +81,9 @@
                             </table>
                         </div>
                     </div>
-                    <div class="text-white my-4 col-lg-4">
+                    <div class="text-white my-4 mt-lg-0 col-lg-4">
                         <div class="bg-[#9FB39A] p-6">
-                            <div class="flex justify-between pb-2">
+                            <div class="flex justify-between">
                                 <div class="">
                                     <span>Subtotal</span>
                                 </div>
@@ -156,12 +156,10 @@
                 },
                 dataType: 'json',
                 success: function(response) {
-                    // Update the total price for the specific row
                     var totalPriceElement = $('tr[data-row-id="' + rowId + '"] .total-price');
                     var newTotal = qty * price;
                     totalPriceElement.text(formatCurrency(newTotal));
 
-                    // Update the subtotal for the entire cart
                     updateSubtotal();
                 }
             });
@@ -197,7 +195,23 @@
                         dataType: 'json',
                         success: function(response) {
                             if (response.status == true) {
-                                window.location.href = '{{ route('front.cart') }}';
+                                $('tr[data-row-id="' + rowId + '"]').remove();
+
+                                updateSubtotal();
+
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Produk dihapus',
+                                    text: 'Produk berhasil dihapus dari keranjang.',
+                                    timer: 1500,
+                                    showConfirmButton: false
+                                });
+
+                                if ($('tbody tr').length === 0) {
+                                    $('.overflow-x-auto').html(
+                                        '<div class="flex justify-center items-center p-6"><h4>Keranjang masih kosong</h4></div>'
+                                    );
+                                }
                             }
                         }
                     });

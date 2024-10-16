@@ -1,104 +1,101 @@
 @extends('front.layouts.app')
-
+@include('front.partials.navbar')
 @section('content')
-    <section class="section-6 pt-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3 sidebar">
-                    <div class="sub-title mt-5">
-                        <h2>Price</h2>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-body">
-                            <input type="text" class="js-range-slider" name="my_range" value="" />
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-9">
-                    <div class="row pb-3">
-                        <div class="col-12 pb-1">
-                            <div class="d-flex align-items-center justify-content-end mb-4">
-                                <div class="ml-2">
-                                    <select name="sort" id="sort" class="form-control">
-                                        <option value="latest" {{ $sort == 'latest' ? 'selected' : '' }}>Latest</option>
-                                        <option value="price_desc" {{ $sort == 'price_desc' ? 'selected' : '' }}>Highest
-                                            Price</option>
-                                        <option value="price_asc" {{ $sort == 'price_asc' ? 'selected' : '' }}>Lowest
-                                            Price</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        @if ($products->isNotEmpty())
-                            @foreach ($products as $product)
-                                <div class="col-md-4">
-                                    <div class="card product-card">
-                                        <div class="product-image position-relative"
-                                            style="height: 250px; overflow: hidden;">
-                                            <a href="{{ route('front.product', $product->slug) }}" class="product-img">
-                                                @if (!empty($product->product_image))
-                                                    <img class="card-img-top h-100" src="{{ $product->product_image }}"
-                                                        style="object-fit: cover;" />
-                                                @else
-                                                    <img class="card-img-top h-100"
-                                                        src="{{ asset('admin-assets/img/default-150x150.png') }}"
-                                                        style="object-fit: cover;" />
-                                                @endif
-                                            </a>
-
-                                            <a onclick="addToWishlist({{ $product->id }})" class="whishlist"
-                                                href="javascript:void(0);"><i class="far fa-heart"></i></a>
-
-                                            <div class="product-action">
-                                                @if ($product->track_qty == 'Yes')
-                                                    @if ($product->qty > 0)
-                                                        <a class="btn btn-dark" href="javascript:void(0);"
-                                                            onclick="addToCart({{ $product->id }});">
-                                                            <i class="fa fa-shopping-cart"></i> Add To Cart
-                                                        </a>
-                                                    @else
-                                                        <a class="btn btn-dark" href="javascript:void(0);"
-                                                            onclick="showOutOfStockAlert();">
-                                                            Kehabisan Stock
-                                                        </a>
-                                                    @endif
-                                                @else
-                                                    <a class="btn btn-dark" href="javascript:void(0);"
-                                                        onclick="addToCart({{ $product->id }});">
-                                                        <i class="fa fa-shopping-cart"></i> Add To Cart
-                                                    </a>
-                                                @endif
-                                            </div>
-                                        </div>
-
-                                        <div class="card-body text-center mt-3" style="height: 100px;">
-                                            <a class="h6 link"
-                                                href="{{ route('front.product', $product->slug) }}">{{ $product->title }}</a>
-                                            <div class="price mt-2">
-                                                <span class="h5"><strong>Rp
-                                                        {{ number_format($product->price, 2) }}</strong></span>
-
-                                                @if ($product->compare_price > 0)
-                                                    <span class="h6 text-underline"><del>Rp
-                                                            {{ number_format($product->compare_price, 2) }}</del></span>
-                                                @endif
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
-                        @endif
-
-                        <div class="col-md-12 pt-5">
-                            {{ $products->withQueryString()->links() }}
-                        </div>
-                    </div>
+    <section class="hidden lg:block h-2/3 object-cover"
+        style="background-image: url('{{ asset('img/shop_banner.png') }}'); background-repeat: no-repeat; background-size: cover;">
+        <div class="bg-[#826F66] ml-48 px-5 text-center h-full w-fit flex items-center">
+            <div class="text-white text-center">
+                <img src="{{ asset('img/shop_icon.png') }}" class="w-20 mx-auto" alt="Shop Logo">
+                <p class="mt-4">UMKM SEDJAK 1960</p>
+                <h3 class="mt-2">KRAYU RUMAH</br>UNTUK UMKM</h3>
+                <div class="mt-4">
+                    <a href="#shop" class="bg-white px-4 py-2 text-[#826F66]">BELANJA SEKARANG</a>
                 </div>
             </div>
         </div>
     </section>
+
+    <section class="lg:hidden">
+        <img src="{{ asset('img/shop_banner.png') }}" class="h-1/3 w-full object-cover" alt="Shop Banner">
+        <div class="bg-[#826F66] h-fit py-5 text-white text-center">
+            <img src="{{ asset('img/shop_icon.png') }}" class="w-20 mx-auto" alt="Shop Logo">
+            <p class="mt-4">UMKM SEDJAK 1960</p>
+            <h3 class="mt-2">KRAYU RUMAH</br>UNTUK UMKM</h3>
+            <div class="mt-4">
+                <a href="#shop" class="bg-white px-4 py-2 text-[#826F66]">BELANJA SEKARANG</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="shop" class="bg-white pt-5">
+        <div class="w-11/12 mx-auto">
+            <div class="flex flex-wrap">
+                @if ($products->isNotEmpty())
+                    <div class="mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                        @foreach ($products as $product)
+                            <div class="border border-gray-300 rounded-lg shadow-md overflow-hidden">
+                                <div class="relative h-64">
+                                    <a href="{{ route('front.product', $product->slug) }}" class="block h-full">
+                                        @if (!empty($product->product_image))
+                                            <img class="object-cover h-full w-full" src="{{ $product->product_image }}" />
+                                        @else
+                                            <img class="object-cover h-full w-full"
+                                                src="{{ asset('admin-assets/img/default-150x150.png') }}" />
+                                        @endif
+                                    </a>
+
+                                    <a onclick="addToWishlist({{ $product->id }})"
+                                        class="absolute top-2 right-2 bg-white p-2 rounded-full shadow-md cursor-pointer">
+                                        <i class="far fa-heart text-red-500"></i>
+                                    </a>
+                                </div>
+
+                                <div class="p-4 text-center">
+                                    <a class="text-xl text-[#3A3845] font-bold block"
+                                        href="{{ route('front.product', $product->slug) }}">{{ $product->title }}</a>
+                                    <div class="price mt-2">
+                                        <span class="text-lg text-[#3A3845] font-semibold">Rp {{ number_format($product->price, 2) }}</span>
+                                        @if ($product->compare_price > 0)
+                                            <span class="text-gray-500 line-through">Rp
+                                                {{ number_format($product->compare_price, 2) }}</span>
+                                        @endif
+                                    </div>
+
+                                    <div class="mt-3">
+                                        @if ($product->track_qty == 'Yes')
+                                            @if ($product->qty > 0)
+                                                <a class="block w-full border-[1px] border-black text-black py-2 px-2 text-center"
+                                                    href="javascript:void(0);" onclick="addToCart({{ $product->id }});">
+                                                    MASUKKAN KERANJANG
+                                                </a>
+                                            @else
+                                                <a class="block w-full border-[1px] border-black text-black py-2 px-2 text-center"
+                                                    href="javascript:void(0);" onclick="showOutOfStockAlert();">
+                                                    STOK HABIS
+                                                </a>
+                                            @endif
+                                        @else
+                                            <a class="block w-full border-[1px] border-black text-black py-2 px-2 text-center"
+                                                href="javascript:void(0);" onclick="addToCart({{ $product->id }});">
+                                                MASUKKAN KERANJANG
+                                            </a>
+                                        @endif
+                                    </div>
+
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                @endif
+
+                <div class="pt-5">
+                    {{ $products->withQueryString()->links() }}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    @include('front.partials.footer')
 @endsection
 
 @section('customJs')

@@ -1,14 +1,8 @@
 @extends('front.layouts.app')
 @include('front.partials.navbar')
 @section('content')
-    <section class="bg-white w-3/4 lg:w-1/2 mx-auto my-5 shadow-lg rounded-lg">
-        <div class="col-md-12 text-center py-5">
-
-            @if (Session::has('success'))
-                <div class="">
-                    {{ Session::get('success') }}
-                </div>
-            @endif
+    <section class="bg-white">
+        <div class="col-md-12 text-center pt-5 h-screen">
 
             <img src="{{ asset('img/logo_krayu.png') }}" class="w-44 mx-auto mb-5" alt="Logo Krayu">
 
