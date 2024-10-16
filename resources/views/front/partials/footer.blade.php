@@ -1,4 +1,4 @@
- <footer class="bg-white">
+ <footer class="bg-white pt-5">
      <div class="mx-auto p-5 text-black bg-[#FAF3EA]">
          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
              <div class="flex flex-col items-center">

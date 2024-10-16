@@ -81,7 +81,7 @@
                             </table>
                         </div>
                     </div>
-                    <div class="text-white mt-4 mt-md-4 mt-lg-0 mt-xl-0 col-lg-4">
+                    <div class="text-white my-4 col-lg-4">
                         <div class="bg-[#9FB39A] p-6">
                             <div class="flex justify-between pb-2">
                                 <div class="">

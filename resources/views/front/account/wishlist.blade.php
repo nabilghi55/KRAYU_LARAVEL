@@ -1,120 +1,119 @@
 @extends('front.layouts.app')
-
+@include('front.partials.navbar')
 @section('content')
-<section class="section-5 pt-3 pb-3 mb-3 bg-white">
-    <div class="container">
-        <div class="light-font">
-            <ol class="breadcrumb primary-color mb-0">
-                <li class="breadcrumb-item"><a class="white-text" href="#">My Account</a></li>
-                <li class="breadcrumb-item">Wishlish</li>
-            </ol>
-        </div>
-    </div>
-</section>
-
-<section class=" section-11 ">
-<div class="container  mt-5">
-    <div class="row">
-        <div class= "col-md-12">
-            @include('front.account.common.message')
-        </div>
-
-        <div class="col-md-3">
-            @include('front.account.common.sidebar')
-        </div>
-        <div class="col-md-9">
-            <div class="card">
-                <div class="card-header">
-                    <h2 class="h5 mb-0 pt-2 pb-2">My Wishlist</h2>
+    <section class="bg-white">
+        <div class="w-11/12 mx-auto">
+            <div class="row">
+                <div class="col-md-12">
+                    @include('front.account.common.message')
                 </div>
-                <div class="card-body p-4">
-                    @if ($wishlists->isNotEmpty())
-                    @foreach ($wishlists as $wishlist)
-                        <div class="d-sm-flex justify-content-between mt-lg-4 mb-4 pb-3 pb-sm-2 border-bottom">
-                            <div class="d-block d-sm-flex align-items-start text-center text-sm-start">
-                                <a class="d-block flex-shrink-0 mx-auto me-sm-4" href="{{ route("front.product",$wishlist->product->slug) }}" style="width: 10rem;">
-                                @if (!empty($wishlist->product))
-                                    <img src="{{ $wishlist->product->product_image }}"/>
-                                @else
-                                    <img src="{{ asset('admin-assets/img/default-150x150.png') }}"/>
-                                @endif
-                                </a>
 
-                                <div class="pt-2">
-                                    <h3 class="product-title fs-base mb-2">
-                                        <a href="{{ route("front.product",$wishlist->product->slug) }}">{{ $wishlist->product->title }}</a></h3>
-                                    <div class="fs-lg text-accent pt-2">
-                                        <span class="h5"><strong> Rp {{ $wishlist->product->price }}</strong></span>
-                                        @if($wishlist->product->compare_price > 0)
-                                        <span class="h6 text-underline"><del>Rp {{ $wishlist->product->compare_price }}</del></span>
-                                        @endif
+                <div class="col-md-4 col-lg-3">
+                    @include('front.account.common.sidebar')
+                </div>
+                <div class="col-md-8 col-lg-9">
+                    <div class="bg-white text-[#3A3845] shadow mt-4 mt-md-0">
+                        <div class="bg-gray-100 p-3">
+                            <h2 class="text-xl font-bold">Wishlist Saya</h2>
+                        </div>
+                        <div class="p-4">
+                            @if ($wishlists->isNotEmpty())
+                                @foreach ($wishlists as $wishlist)
+                                    <div
+                                        class="flex flex-col sm:flex-row justify-between items-center border-b border-gray-200 py-4">
+                                        <div class="flex items-center">
+                                            <a class="block mx-auto sm:mx-0 sm:mr-4"
+                                                href="{{ route('front.product', $wishlist->product->slug) }}"
+                                                style="width: 10rem;">
+                                                @if (!empty($wishlist->product))
+                                                    <img src="{{ $wishlist->product->product_image }}"
+                                                        class="w-full h-auto" />
+                                                @else
+                                                    <img src="{{ asset('admin-assets/img/default-150x150.png') }}"
+                                                        class="w-full h-auto" />
+                                                @endif
+                                            </a>
+
+                                            <div class="mt-2 sm:mt-0">
+                                                <h3 class="text-lg font-semibold mb-2">
+                                                    <a
+                                                        href="{{ route('front.product', $wishlist->product->slug) }}">{{ $wishlist->product->title }}</a>
+                                                </h3>
+                                                <div class="text-gray-800 text-lg">
+                                                    <span class="font-bold">Rp {{ $wishlist->product->price }}</span>
+                                                    @if ($wishlist->product->compare_price > 0)
+                                                        <span class="text-sm text-gray-500 line-through">Rp
+                                                            {{ $wishlist->product->compare_price }}</span>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4 sm:mt-0">
+                                            <button onclick="removeProduct({{ $wishlist->product_id }});"
+                                                class="btn btn-outline-danger btn-sm bg-red-500 text-white py-2 px-4 rounded"
+                                                type="button">
+                                                <i class="fas fa-trash-alt mr-2"></i>Hapus
+                                            </button>
+                                        </div>
                                     </div>
+                                @endforeach
+                            @else
+                                <div>
+                                    <h4 class="text-lg font-semibold">Wishlist anda kosong.</h4>
                                 </div>
-                            </div>
-                            <div class="pt-2 ps-sm-3 mx-auto mx-sm-0 text-center">
-                                <button onclick="removeProduct({{ $wishlist->product_id}});" class="btn btn-outline-danger btn-sm" type="button"><i class="fas fa-trash-alt me-2"></i>Remove</button>
-                            </div>
+                            @endif
                         </div>
-                    @endforeach
-                    @else
-                        <div>
-                            <h3 class="h5">Your wishlist is empty!!</h3>
-                        </div>
-                    @endif
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-</section>
-
+    </section>
+    @include('front.partials.footer')
 @endsection
 
 @section('customJs')
-<script>
-    function removeProduct(id) {
-        Swal.fire({
-            title: 'Remove from Wishlist',
-            text: 'Are you sure you want to remove this product from your wishlist?',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Yes, remove it',
-            cancelButtonText: 'Cancel'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                // User confirmed the removal, send an AJAX request
-                $.ajax({
-                    url: '{{ route("account.removeProductFromWishList") }}',
-                    type: 'post',
-                    data: { id: id },
-                    dataType: 'json',
-                    success: function (response) {
-                        if (response.status == true) {
-                            // Product removed successfully, show a success SweetAlert2 popup
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Removed from Wishlist',
-                                text: response.message,
-                                showConfirmButton: false,
-                                timer: 1000, // Close after 1.5 seconds
-                                timerProgressBar: true
-                            }).then(() => {
-                                // Redirect to the wishlist page
-                                window.location.href = '{{ route("account.wishlist") }}';
-                            });
-                        } else {
-                            // Product removal failed, show an error SweetAlert2 popup
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Error',
-                                text: 'Failed to remove the product from your wishlist. Please try again.',
-                                confirmButtonText: 'OK'
-                            });
+    <script>
+        function removeProduct(id) {
+            Swal.fire({
+                title: 'Remove from Wishlist',
+                text: 'Are you sure you want to remove this product from your wishlist?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, remove it',
+                cancelButtonText: 'Cancel'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: '{{ route('account.removeProductFromWishList') }}',
+                        type: 'post',
+                        data: {
+                            id: id
+                        },
+                        dataType: 'json',
+                        success: function(response) {
+                            if (response.status == true) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Removed from Wishlist',
+                                    text: response.message,
+                                    showConfirmButton: false,
+                                    timer: 1000,
+                                    timerProgressBar: true
+                                }).then(() => {
+                                    window.location.href = '{{ route('account.wishlist') }}';
+                                });
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Error',
+                                    text: 'Failed to remove the product from your wishlist. Please try again.',
+                                    confirmButtonText: 'OK'
+                                });
+                            }
                         }
-                    }
-                });
-            }
-        });
-    }
-</script>
+                    });
+                }
+            });
+        }
+    </script>
 @endsection

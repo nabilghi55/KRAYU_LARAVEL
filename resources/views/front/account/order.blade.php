@@ -1,73 +1,62 @@
 @extends('front.layouts.app')
-
+@include('front.partials.navbar')
 @section('content')
-<section class="section-5 pt-3 pb-3 mb-3 bg-white">
-    <div class="container">
-        <div class="light-font">
-            <ol class="breadcrumb primary-color mb-0">
-                <li class="breadcrumb-item"><a class="white-text" href="{{ route('account.profile') }}">My Account</a></li>
-                <li class="breadcrumb-item">My Orders</li>
-            </ol>
-        </div>
-    </div>
-</section>
-
-<section class=" section-11 ">
-    <div class="container  mt-5">
+<section class=" bg-white">
+    <div class="w-11/12 mx-auto">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-4 col-lg-3">
                 @include('front.account.common.sidebar')
             </div>
-            <div class="col-md-9">
-                <div class="card">
-                    <div class="card-header">
-                        <h2 class="h5 mb-0 pt-2 pb-2">My Orders</h2>
+            <div class="col-md-8 col-lg-9">
+                <div class="bg-white text-[#3A3845] shadow mb-5 mt-5 mt-md-0">
+                    <div class="px-6 py-3 border-b">
+                        <h2 class="text-lg font-semibold">Pesanan Saya</h2>
                     </div>
-                    <div class="card-body p-4">
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead> 
-                                    <tr>
-                                        <th>Orders #</th>
-                                        <th>Date Purchased</th>
-                                        <th>Payment Status</th>
-                                        <th>Order Status</th>
-                                        <th>Total</th>
+                    <div class="p-6">
+                        <div class="overflow-auto">
+                            <table class="min-w-full table-auto">
+                                <thead>
+                                    <tr class="text-center text-gray-600 uppercase tracking-wider text-sm">
+                                        <th class="px-4 py-2">ID Pesanan</th>
+                                        <th class="px-4 py-2">Tanggal Pesanan</th>
+                                        <th class="px-4 py-2">Status Pembayaran</th>
+                                        <th class="px-4 py-2">Status Pesanan</th>
+                                        <th class="px-4 py-2">Total</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @if ($orders->isNotEmpty())
                                     @foreach ($orders as $order)
-                                    <tr>
-                                        <td>
-                                            <a href="{{ route('account.orderDetail',$order->id) }}">{{ $order->id }}</a>
+                                    <tr class="border-b text-center">
+                                        <td class="px-4 py-2">
+                                            <a class="text-[#3A3845]" href="{{ route('account.orderDetail',$order->id) }}">{{ $order->id }}</a>
                                         </td>
-                                        <td> {{ \Carbon\Carbon::parse($order->created_at)->format('d M, Y') }}</td>
-                                        <td>
+                                        <td class="px-4 py-2">{{ \Carbon\Carbon::parse($order->created_at)->format('d M, Y') }}</td>
+                                        <td class="px-4 py-2">
                                             @if ($order->payment_status == '1')
-                                               <span class="badge bg-danger">Not Paid</span>
+                                                <span class="inline-block px-2 py-1 bg-red-500 text-white rounded">Belum Bayar</span>
                                             @else
-                                                <span class="badge bg-success">Paid</span>
+                                                <span class="inline-block px-2 py-1 bg-green-500 text-white rounded">Sudah Bayar</span>
                                             @endif
                                         </td>
-                                        <td>
+                                        <td class="px-4 py-2">
                                             @if ($order->status == 'pending')
-                                            <span class="badge bg-danger">Pending</span>
+                                                <span class="inline-block px-2 py-1 bg-red-500 text-white rounded">Menunggu</span>
                                             @elseif ($order->status == 'shipped')
-                                            <span class="badge bg-info">Shipped</span>
+                                                <span class="inline-block px-2 py-1 bg-blue-500 text-white rounded">Dikirim</span>
                                             @elseif ($order->status == 'delivered')
-                                            <span class="badge bg-success">Delivered</span>
+                                                <span class="inline-block px-2 py-1 bg-green-500 text-white rounded">Selesai</span>
                                             @else
-                                            <span class="badge bg-black">Cancelled</span>
+                                                <span class="inline-block px-2 py-1 bg-black text-white rounded">Dibatalkan</span>
                                             @endif
                                         </td>
-                                        <td>Rp {{ number_format($order->grand_total,2) }} </td>
+                                        <td class="px-4 py-2">Rp {{ number_format($order->grand_total,2) }}</td>
                                     </tr>
                                     @endforeach
                                     @else
-                                        <tr>
-                                            <td colspan="3">Orders not Found</td>
-                                        </tr>
+                                    <tr>
+                                        <td colspan="5" class="px-4 py-2 text-center text-gray-500">Pesanan Tidak Ditemukan</td>
+                                    </tr>
                                     @endif
                                 </tbody>
                             </table>
@@ -78,4 +67,5 @@
         </div>
     </div>
 </section>
+@include('front.partials.footer')
 @endsection
