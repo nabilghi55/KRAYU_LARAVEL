@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-		<title>Cattle Market</title>
+		<title>Admin Krayu</title>
 		<!-- Google Font: Source Sans Pro -->
         <link rel="icon" href="{{ asset('admin-assets/img/AdminLTELogo.png') }}" type="image/png" />
 

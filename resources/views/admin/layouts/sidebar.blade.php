@@ -3,7 +3,7 @@
     <a href="#" class="brand-link">
         <img src="{{ asset('admin-assets/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
             class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">Cattle Market</span>
+        <span class="brand-text font-weight-light">Admin Krayu</span>
     </a>
     <!-- Sidebar -->
     <div class="sidebar">

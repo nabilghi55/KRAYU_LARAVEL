@@ -2,7 +2,7 @@
 @include('front.partials.navbar')
 @section('content')
     <section class="hidden lg:block h-2/3 object-cover"
-        style="background-image: url('{{ asset('img/shop_banner.png') }}'); background-repeat: no-repeat; background-size: cover;">
+        style="background-image: url('{{ asset('img/shop_banner.jpg') }}'); background-repeat: no-repeat; background-size: cover;">
         <div class="bg-[#826F66] ml-48 px-5 text-center h-full w-fit flex items-center">
             <div class="text-white text-center">
                 <img src="{{ asset('img/shop_icon.png') }}" class="w-20 mx-auto" alt="Shop Logo">
