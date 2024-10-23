@@ -50,7 +50,7 @@ class AuthController extends Controller
             $user->password = Hash::make($request->password);
             $user->save();
 
-            session()->flash('success','You Have Been Registerd Successfuly.');
+            session()->flash('success','Registrasi anda berhasil.');
 
             return response()->json([
                 'status' => true,
@@ -84,7 +84,7 @@ class AuthController extends Controller
                 //session()->flash('error', 'Either email/password is incorrect.');
                 return redirect()->route('account.login')
                     ->withInput($request->only('email'))
-                    ->with('error', 'Either Email/Password is Incorrect.');
+                    ->with('error', 'Email atau password salah.');
             }
 
         } else {
@@ -127,11 +127,11 @@ class AuthController extends Controller
             $user->phone = $request->phone;
             $user->save();
 
-            session()->flash('success', 'Profile Updated Successfully');
+            session()->flash('success', 'Profil berhasil diperbarui');
 
             return response()->json([
                 'status' => true,
-                'errors' => 'Profile Updated Successfully'
+                'errors' => 'Profil berhasil diperbarui'
             ]);
 
         } else {
@@ -178,11 +178,11 @@ class AuthController extends Controller
                 ]
             );
 
-            session()->flash('success', 'Address Updated Successfully');
+            session()->flash('success', 'Alamat berhasil diperbarui!');
 
             return response()->json([
                 'status' => true,
-                'errors' => 'Profile Updated Successfully'
+                'errors' => 'Profil telah diperbarui!'
             ]);
 
         } else {
@@ -196,7 +196,7 @@ class AuthController extends Controller
     public function logout() {
         Auth::logout();
         return redirect()->route('account.login')
-        ->with('success', 'You Successfully Logged Out!');
+        ->with('success', 'Anda berhasil keluar!');
     }
 
     public function orders() {
@@ -401,13 +401,13 @@ class AuthController extends Controller
         $wishlist = Wishlist::where('user_id',Auth::user()-> id)->where('product_id',$request->id)->first();
 
         if ($wishlist == null) {
-            session()->flash('error','Product Alredy Removed.');
+            session()->flash('error','Produk sudah dihapus.');
             return response()->json([
                 'status' => true,
             ]);
         } else {
             Wishlist::where('user_id',Auth::user()-> id)->where('product_id',$request->id)->delete();
-            session()->flash('success','Product Removed Successfully.');
+            session()->flash('success','Produk berhasil dihapus.');
             return response()->json([
                 'status' => true,
             ]);
@@ -460,7 +460,7 @@ class AuthController extends Controller
 
             if(!Hash::check($request->old_password,$user->password)){
 
-                session()->flash('error','Your old password is incorrect, please try again.');
+                session()->flash('error','Password lama anda salah. Silahkan coba lagi.');
 
                 return response()->json([
                     'status' => true,
@@ -471,7 +471,7 @@ class AuthController extends Controller
                 'password' => Hash::make($request->new_password)
             ]);
 
-            session()->flash('success','You have successfully changed your password');
+            session()->flash('success','Password berhasil diganti!');
 
             return response()->json([
                 'status' => true,
@@ -518,12 +518,12 @@ class AuthController extends Controller
         $formData = [
             'token' => $token,
             'user' => $user,
-            'mailSubject' => 'You have requested to reset your password'
+            'mailSubject' => 'Permintaan penggantian password berhasil'
         ];
 
             Mail::to($request->email)->send(new ResetPasswordEmail($formData));
 
-            return redirect()->route('front.forgotPassword')->with('success', 'Please check your inbox to reset your password.');
+            return redirect()->route('front.forgotPassword')->with('success', 'Silahkan cek email anda untuk mengganti password.');
     }
 
     public function resetPassword ($token) {
@@ -565,6 +565,6 @@ class AuthController extends Controller
 
         \DB::table('password_reset_tokens')->where('email',$request->email)->delete();
 
-        return redirect()->route('account.login')->with('success','You have successfully updated your password.');
+        return redirect()->route('account.login')->with('success','Password berhasil diperbarui!.');
     }
 }

@@ -21,7 +21,7 @@
                                 @foreach ($wishlists as $wishlist)
                                     <div
                                         class="flex flex-col sm:flex-row justify-between items-center border-b border-gray-200 py-4">
-                                        <div class="flex items-center">
+                                        <div class="flex items-center gap-4">
                                             <a class="block mx-auto sm:mx-0 sm:mr-4"
                                                 href="{{ route('front.product', $wishlist->product->slug) }}"
                                                 style="width: 10rem;">
@@ -35,11 +35,11 @@
                                             </a>
 
                                             <div class="mt-2 sm:mt-0">
-                                                <h3 class="text-lg font-semibold mb-2">
+                                                <h3 class="text-lg font-semibold mb-2 text-[#3A3845]">
                                                     <a
-                                                        href="{{ route('front.product', $wishlist->product->slug) }}">{{ $wishlist->product->title }}</a>
+                                                        href="{{ route('front.product', $wishlist->product->slug) }}" class="text-[#3A3845]">{{ $wishlist->product->title }}</a>
                                                 </h3>
-                                                <div class="text-gray-800 text-lg">
+                                                <div class="text-lg">
                                                     <span class="font-bold">Rp {{ $wishlist->product->price }}</span>
                                                     @if ($wishlist->product->compare_price > 0)
                                                         <span class="text-sm text-gray-500 line-through">Rp
@@ -48,11 +48,18 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="mt-4 sm:mt-0">
+                                        <div class="mt-4 sm:mt-0 md:hidden lg:block">
                                             <button onclick="removeProduct({{ $wishlist->product_id }});"
-                                                class="btn btn-outline-danger btn-sm bg-red-500 text-white py-2 px-4 rounded"
+                                                class="bg-white text-red-500 border-[1px] border-red-500 py-2 px-4 rounded hover:scale-105 duration-300"
                                                 type="button">
                                                 <i class="fas fa-trash-alt mr-2"></i>Hapus
+                                            </button>
+                                        </div>
+                                        <div class="mt-4 hidden md:block lg:hidden">
+                                            <button onclick="removeProduct({{ $wishlist->product_id }});"
+                                                class="bg-white text-red-500 border-[1px] border-red-500 py-2 px-4 rounded hover:scale-105 duration-300"
+                                                type="button">
+                                                <i class="fas fa-trash-alt py-2"></i>
                                             </button>
                                         </div>
                                     </div>
@@ -75,12 +82,12 @@
     <script>
         function removeProduct(id) {
             Swal.fire({
-                title: 'Remove from Wishlist',
-                text: 'Are you sure you want to remove this product from your wishlist?',
+                title: 'Hapus dari whishlist',
+                text: 'Anda yakin ingin menghapus produk dari whishlist?',
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonText: 'Yes, remove it',
-                cancelButtonText: 'Cancel'
+                confirmButtonText: 'Ya',
+                cancelButtonText: 'Tidak'
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
@@ -94,7 +101,7 @@
                             if (response.status == true) {
                                 Swal.fire({
                                     icon: 'success',
-                                    title: 'Removed from Wishlist',
+                                    title: 'Berhasil menghapus produk dari whishlist',
                                     text: response.message,
                                     showConfirmButton: false,
                                     timer: 1000,
@@ -106,8 +113,8 @@
                                 Swal.fire({
                                     icon: 'error',
                                     title: 'Error',
-                                    text: 'Failed to remove the product from your wishlist. Please try again.',
-                                    confirmButtonText: 'OK'
+                                    text: 'Gagal menghapus produk dari whishlist. Coba lagi',
+                                    confirmButtonText: 'Oke'
                                 });
                             }
                         }
