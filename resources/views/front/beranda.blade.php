@@ -23,9 +23,14 @@
         <div class="text-center mx-auto">
             <div class="text-black">
                 <h1 class="font-bold">Tentang Krayu</h1>
-                <img src="{{ asset('img/image_about.png') }}" class="mt-4 w-11/12 mx-auto" alt="About">
+                <img src="{{ asset('img/image_about.jpg') }}" class="mt-4 w-11/12 mx-auto" alt="About">
                 <h1 class="mt-5 font-bold">Apa itu Krebet?</h1>
-                <p class="mt-4 text-justify">Krebet merupakan sentra industri batik kayu yang mempunyai potensi
+                <p class="mt-4 text-justify">Krayu adalah usaha yang berfokus pada pemasaran hasil kerajinan pengrajin batik
+                    kayu Krebet, yang menggabungkan keindahan seni tradisional dengan desain motif dan bentukkekinian. Kami
+                    berkomitmen untuk mengangkat kearifan lokal melalui inovasi modern, menghadirkan produk berkualitas yang
+                    unik,estetik,dan penuh nilai budaya.
+                </p>
+                <p class="mt-2 text-justify">Krebet merupakan sentra industri batik kayu yang mempunyai potensi
                     kepariwisataan baik dari sisi budaya
                     maupun alamnya. Krebet terletak di Kabupaten Bantul, Daerah Istimewa Yogyakarta. Pemerintah Kabupaten
                     Bantul melalui Dinas Kebudayaan dan Pariwisata menetapkan Krebet sebagai Desa Wisata. Dinas
@@ -47,7 +52,7 @@
                     menambah penghasilan disela-sela bertani. Bentuk kerajinan kayu dan proses pembuatan yang sederhana
                     membuat kerajinan kayu tersebut belum mempunyai daya jual tinggi dan membatasi proses penjualan.
                     Meskipun sederhana, kerajinan tersebut merupakan kerajinan pertama yang ada di Dusun Krebet. </p>
-                <img src="{{ asset('img/image_history_1.png') }}" class="mt-4 w-11/12 mx-auto" alt="History 1">
+                <img src="{{ asset('img/image_history_1.jpg') }}" class="mt-4 w-11/12 mx-auto" alt="History 1">
                 <p class="mt-4 text-justify">Kisah Bapak Gunjiar (65) merupakan awal dari perkembangan kerajinan kayu yang
                     signifikan. Sekitar tahun 1972, ia mulai mengembangkan bentuk-bentuk yang lebih rumit, seperti patung
                     Semar. Karya inovatif Gunjiar menarik perhatian banyak pengunjung saat pameran, meskipun ia belajar ukir
@@ -55,14 +60,14 @@
                     tertantang. Ia kemudian memutuskan untuk magang di tempat Pak Warno Waskito, seorang pengrajin topeng
                     terkenal di Yogyakarta, dan berhasil menyelesaikan pesanan tersebut dengan baik.
                 </p>
-                <img src="{{ asset('img/image_history_2.png') }}" class="mt-4 w-11/12 mx-auto" alt="History 2">
+                <img src="{{ asset('img/image_history_2.jpg') }}" class="mt-4 w-11/12 mx-auto" alt="History 2">
                 <p class="mt-4 text-justify">Pengrajin lainnya dari Dusun Krebet adalah Bapak Kemiskidi, yang juga pemilik
                     Sanggar Peni. Ia belajar
                     membuat topeng kayu dari Bapak Warno Waskito dan kemudian mengembangkan serta memasarkan kerajinannya
                     sendiri. Hasil penjualan karyanya membantunya untuk melanjutkan pendidikan ke tingkat SMA. Kemiskidi
                     berhasil mempertahankan dan mengembangkan Sanggar Peni, yang kini mempekerjakan sekitar 50 pengrajin.
                 </p>
-                <p class="text-justify">Di sisi lain, Bapak Anton Wahono, pengrajin asal Dusun Krebet dan pemilik Sanggar
+                <p class="mt-2 text-justify">Di sisi lain, Bapak Anton Wahono, pengrajin asal Dusun Krebet dan pemilik Sanggar
                     Punokawan, awalnya
                     merupakan pengrajin wayang kulit. Berbekal keterampilan menyungging, ia membuka usaha produksi wayang
                     kulit. Namun, pada tahun 1988, kebijakan pemerintah yang membatasi ekspor kulit mentah membuat bahan

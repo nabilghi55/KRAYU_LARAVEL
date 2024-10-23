@@ -34,23 +34,29 @@
      <div class="container mx-auto text-black px-4">
          <div class="text-center">
              <h4 class="font-bold">HUBUNGI KAMI</h4>
-             <p class="text-[#272829] mt-3">
-                 PONDOK ALAM SIGURA GURA 6 BLOK <br>
-                 RESTVILLE GANG 7
-             </p>
-             <p class="text-[#272829] mt-3">Kel. Langsep, Kec. Surakarta, Kota Malang, Prov. Jawa Timur</p>
-             <h4 class="font-bold mt-4">SOSIAL MEDIA</h4>
-             <div class="flex justify-center gap-4 mt-3 pb-6">
-                 <a href="#" class="text-black">
-                     <img src="{{ asset('img/twitter.png') }}" class="w-12" alt="twitter">
-                 </a>
-                 <a href="#" class="text-purple-600">
-                     <img src="{{ asset('img/instagram.png') }}" class="w-12" alt="instagram">
-                 </a>
-                 <a href="#" class="text-red-600">
-                     <img src="{{ asset('img/gmail.png') }}" class="w-12" alt="gmail">
-                 </a>
+             <div class="mt-4 flex justify-center items-center gap-2">
+                 <img src="{{ asset('img/gmail.png') }}" class="w-7" alt="Gmail Icon"></img>
+                 <p class="text-lg font-bold">Email</p>
              </div>
+             <p class="text-[#272829] mt-1">
+                 krebet2uny@gmail.com
+             </p>
+             <div class="mt-4 flex justify-center items-center gap-2">
+                 <img src="{{ asset('img/instagram.png') }}" class="w-7" alt="Instagram Icon"></img>
+                 <p class="text-lg font-bold">Instagram</p>
+             </div>
+             <p class="text-[#272829] mt-1">
+                 @_krayu_
+             </p>
+             <div class="mt-4 flex justify-center items-center gap-2">
+                 <img src="{{ asset('img/whatsapp.png') }}" class="w-7" alt="Whatsapp Icon"></img>
+                 <p class="text-lg font-semibold">Whatsapp</p>
+             </div>
+             <p class="text-[#272829] mt-1">
+                 08982000108 (Rara)<br>
+                 083112095579 (Amzy)<br>
+                 083130314941 (Titu)
+             </p>
          </div>
      </div>
 
